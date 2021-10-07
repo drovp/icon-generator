@@ -33,6 +33,7 @@ type Options = {
 	};
 };
 
+const iconSizes = [16, 20, 24, 32, 40, 48, 57, 64, 72, 96, 120, 128, 144, 152, 195, 228, 256, 512, 1024];
 const optionsSchema: OptionsSchema<Options> = [
 	{
 		name: 'ask',
@@ -71,8 +72,8 @@ const optionsSchema: OptionsSchema<Options> = [
 			{
 				name: 'sizes',
 				type: 'select',
-				options: [16, 24, 32, 48, 57, 64, 72, 96, 120, 128, 144, 152, 195, 228, 256, 512, 1024],
-				default: [16, 24, 32, 48, 64, 128, 256],
+				options: iconSizes,
+				default: [16, 20, 24, 32, 40, 48, 64, 128, 256],
 				title: 'Sizes',
 				description: `What sizes to generate and include in the <code>.ico</code> file.`,
 				isHidden: (_, {ico}) => !ico.enabled,
@@ -101,7 +102,7 @@ const optionsSchema: OptionsSchema<Options> = [
 			{
 				name: 'sizes',
 				type: 'select',
-				options: [16, 24, 32, 48, 57, 64, 72, 96, 120, 128, 144, 152, 195, 228, 256, 512, 1024],
+				options: iconSizes,
 				default: [16, 32, 64, 128, 256, 512, 1024],
 				title: 'Sizes',
 				description: `What sizes to generate and include in the <code>.icns</code> file.`,
@@ -132,7 +133,7 @@ const optionsSchema: OptionsSchema<Options> = [
 			{
 				name: 'sizes',
 				type: 'select',
-				options: [16, 24, 32, 48, 57, 64, 72, 96, 120, 128, 144, 152, 195, 228, 256, 512, 1024],
+				options: iconSizes,
 				default: [16, 32, 48],
 				title: 'Sizes',
 				description: `What sizes to generate and include in the <code>favicon.ico</code> file.`,
@@ -164,7 +165,7 @@ const optionsSchema: OptionsSchema<Options> = [
 			{
 				name: 'sizes',
 				type: 'select',
-				options: [16, 24, 32, 48, 57, 64, 72, 96, 120, 128, 144, 152, 195, 228, 256, 512, 1024],
+				options: iconSizes,
 				default: [32, 57, 72, 96, 120, 128, 144, 152, 195, 228],
 				title: 'Sizes',
 				description: `What PNG sizes to generate.`,
