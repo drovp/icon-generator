@@ -239,13 +239,13 @@ export default (plugin: Plugin) => {
 		description: 'Generate .ico, .icns, or .png icons out of one or multiple png or svg files.',
 		accepts: acceptsFlags,
 		threadType: 'cpu',
-		parallelize: true,
+		bulk: true,
 		options: optionsSchema,
 		operationPreparator: async (payload, utils) => {
 			if (payload.options.ask || utils.modifiers === 'ctrl') {
 				const result = await utils.showOpenDialog({
 					title: `Destination directory`,
-					defaultPath: Path.dirname(payload.item.path),
+					defaultPath: Path.dirname(payload.input.path),
 					properties: ['openDirectory', 'createDirectory', 'promptToCreate'],
 				});
 

@@ -71,7 +71,7 @@ function pluckValues<T>(map: Record<string | number, T>, keys: (string | number)
 	return result;
 }
 
-export default async ({options, items, item}: Payload, {stage, progress, output}: ProcessorUtils) => {
+export default async ({options, inputs, input}: Payload, {stage, progress, output}: ProcessorUtils) => {
 	const neededSizes = [
 		...new Set([
 			...(options.ico.enabled ? options.ico.sizes : []),
@@ -82,8 +82,8 @@ export default async ({options, items, item}: Payload, {stage, progress, output}
 	];
 	const inputImages: InputImage[] = [];
 	const outputImages: OutputImages = {};
-	const inputDirectory = Path.dirname(item.path);
-	const inputName = extractName(item.path);
+	const inputDirectory = Path.dirname(input.path);
+	const inputName = extractName(input.path);
 	const outputDirectory = Path.resolve(inputDirectory, options.destination);
 	const imagemin = (await nativeImport('imagemin')).default; // man, this sucks
 	const optimizer = options.pngquant.enabled
@@ -107,9 +107,9 @@ export default async ({options, items, item}: Payload, {stage, progress, output}
 
 	stage('serializing images');
 
-	for (const item of items) {
-		const isSvg = item.type === 'svg';
-		let buffer = await FSP.readFile(item.path);
+	for (const input of inputs) {
+		const isSvg = input.type === 'svg';
+		let buffer = await FSP.readFile(input.path);
 
 		// Convert to PNG
 		if (isSvg) {
@@ -118,9 +118,9 @@ export default async ({options, items, item}: Payload, {stage, progress, output}
 		}
 
 		const sharp = await initSharp(buffer);
-		const size = isSvg ? extractSvgSize(item.path) : (await sharp.metadata()).width;
+		const size = isSvg ? extractSvgSize(input.path) : (await sharp.metadata()).width;
 
-		if (typeof size !== 'number') throw new Error(`Couldn't extract image size of: ${item.path}`);
+		if (typeof size !== 'number') throw new Error(`Couldn't extract image size of: ${input.path}`);
 
 		inputImages.push({size, sharp});
 	}
@@ -159,6 +159,7 @@ export default async ({options, items, item}: Payload, {stage, progress, output}
 		progress.completed += 1;
 	}
 
+	// Ensure directory exists
 	await FSP.mkdir(outputDirectory, {recursive: true});
 
 	/**
