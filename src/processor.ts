@@ -73,7 +73,7 @@ function pluckValues<T>(map: Record<string | number, T>, keys: (string | number)
 	return result;
 }
 
-export default async ({options, items, item}: Payload, {stage, progress, result}: ProcessorUtils) => {
+export default async ({options, items, item}: Payload, {stage, progress, output}: ProcessorUtils) => {
 	const neededSizes = [
 		...new Set([
 			...(options.ico.enabled ? options.ico.sizes : []),
@@ -178,7 +178,7 @@ export default async ({options, items, item}: Payload, {stage, progress, result}
 
 		console.log(`saving to: ${outputPath}`);
 		await FSP.writeFile(outputPath, icoBuffer);
-		result.file(outputPath);
+		output.file(outputPath);
 		progress.completed += 1;
 	}
 
@@ -197,7 +197,7 @@ export default async ({options, items, item}: Payload, {stage, progress, result}
 
 		console.log(`saving to: ${outputPath}`);
 		await FSP.writeFile(outputPath, icoBuffer);
-		result.file(outputPath);
+		output.file(outputPath);
 		progress.completed += 1;
 	}
 
@@ -215,7 +215,7 @@ export default async ({options, items, item}: Payload, {stage, progress, result}
 
 		console.log(`saving to: ${outputPath}`);
 		await FSP.writeFile(outputPath, icoBuffer);
-		result.file(outputPath);
+		output.file(outputPath);
 		progress.completed += 1;
 	}
 
@@ -237,7 +237,7 @@ export default async ({options, items, item}: Payload, {stage, progress, result}
 			);
 			console.log(`saving to: ${outputPath}`);
 			await FSP.writeFile(outputPath, image.buffer);
-			result.file(outputPath);
+			output.file(outputPath);
 		}
 
 		progress.completed += 1;
