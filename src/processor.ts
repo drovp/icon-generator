@@ -2,14 +2,12 @@ import {promises as FSP} from 'fs';
 import * as Path from 'path';
 import type {ProcessorUtils} from '@drovp/types';
 import type {Payload} from './';
-// import * as Jimp from 'jimp';
 import {createIco} from './lib/ico';
 import {createIcns} from './lib/icns';
 import {InputImage, Image} from './types';
 import * as initSharp from 'sharp';
 
-// Unptyped
-// const Svg2 = require('oslllo-svg2');
+// Untyped
 const pngquant = require('imagemin-pngquant');
 const nativeImport = ((name: string) => eval(`import('${name}')`)) as (name: string) => Promise<any>;
 
@@ -116,7 +114,6 @@ export default async ({options, items, item}: Payload, {stage, progress, output}
 		// Convert to PNG
 		if (isSvg) {
 			console.log(`converting svg to png`);
-			console.log('resizedSvgToSharp');
 			buffer = await (await resizedSvgToSharp(buffer, {width: 1024, height: 1024})).png().toBuffer();
 		}
 
