@@ -30,7 +30,6 @@
 		"postversion": "npm-run-all git-push npm-publish"
 	},
 	"devDependencies": {
-		"@drovp/types": "^3.0.1",
 		"@types/pngjs": "^6.0.1",
 		"@types/sharp": "^0.29.2",
 		"npm-run-all": "^4.1.5",
@@ -39,6 +38,7 @@
 		"typescript": "^4.4.3"
 	},
 	"dependencies": {
+		"@drovp/types": "^3.0.1",
 		"imagemin": "^8.0.1",
 		"imagemin-pngquant": "^9.0.2",
 		"jimp": "^0.16.1",
