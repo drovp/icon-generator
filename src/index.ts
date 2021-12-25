@@ -195,7 +195,6 @@ const optionsSchema: OptionsSchema<Options> = [
 				description: `<code>1</code> (slowest) to <code>11</code> (fastest).<br>
 						Speed <code>10</code> has 5% lower quality, but is about 8 times faster than the default.<br>
 						Speed <code>11</code> disables dithering and lowers compression level.`,
-				hint: (value) => value,
 				isHidden: (_, {pngquant}) => !pngquant.enabled,
 			},
 			{
@@ -208,7 +207,6 @@ const optionsSchema: OptionsSchema<Options> = [
 				title: 'Max quality',
 				description: `Instructs pngquant to use the least amount of colors required to meet or exceed the max quality.<br>
 						<code>0</code> (worst) to <code>1</code> (perfect).`,
-				hint: (value) => value,
 				isHidden: (_, {pngquant}) => !pngquant.enabled,
 			},
 			{
@@ -220,7 +218,6 @@ const optionsSchema: OptionsSchema<Options> = [
 				default: 1,
 				title: 'Dithering',
 				description: `Set the dithering level using a fractional number between <code>0</code> (none) and <code>1</code> (full).`,
-				hint: (value) => value,
 				isHidden: (_, {pngquant}) => !pngquant.enabled,
 			},
 		],
