@@ -1,6 +1,8 @@
 import * as Path from 'path';
 import {Plugin, PayloadData, OptionsSchema, makeAcceptsFlags} from '@drovp/types';
 
+const DESTINATION_MODIFIER = process.platform === 'darwin' ? 'Alt' : 'Ctrl';
+
 export type FontType = 'ttf' | 'woff' | 'woff2' | 'eot' | 'svg';
 type Options = {
 	ask: boolean;
@@ -40,7 +42,7 @@ const optionsSchema: OptionsSchema<Options> = [
 		type: 'boolean',
 		default: false,
 		title: 'Ask for destination',
-		description: `Always ask for destination. Also available as a <kbd>ctrl</kbd> drop modifier key.`,
+		description: `Always ask for destination. Also available as a <kbd>${DESTINATION_MODIFIER}</kbd> drop modifier key.`,
 	},
 	{
 		name: 'destination',
@@ -229,8 +231,6 @@ const acceptsFlags = makeAcceptsFlags<Options>()({
 });
 
 export type Payload = PayloadData<Options, typeof acceptsFlags>;
-
-const DESTINATION_MODIFIER = process.platform === 'darwin' ? 'Alt' : 'Ctrl';
 
 export default (plugin: Plugin) => {
 	plugin.registerProcessor<Payload>('icon-generator', {
