@@ -239,7 +239,7 @@ export default (plugin: Plugin) => {
 		bulk: true,
 		options: optionsSchema,
 		operationPreparator: async (payload, utils) => {
-			if (payload.options.ask || utils.modifiers === 'ctrl') {
+			if (payload.options.ask || utils.modifiers === (process.platform === 'darwin' ? 'Alt' : 'Ctrl')) {
 				const result = await utils.showOpenDialog({
 					title: `Destination directory`,
 					defaultPath: Path.dirname(payload.input.path),
@@ -261,7 +261,7 @@ export default (plugin: Plugin) => {
 			return payload;
 		},
 		modifierDescriptions: {
-			ctrl: `ask for destination folder (overwrites the option)`,
+			Ctrl: `ask for destination folder (overwrites the option)`,
 		},
 	});
 };
