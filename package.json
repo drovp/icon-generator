@@ -1,6 +1,6 @@
 {
 	"name": "@drovp/icon-generator",
-	"version": "3.0.4",
+	"version": "3.0.5",
 	"description": "Generate .ico, .icns, or .png icons out of one or multiple png or svg files.",
 	"main": "dist/index.js",
 	"homepage": "https://github.com/drovp/icon-generator",
