@@ -6,15 +6,15 @@ Supports dropping multiple files of different sizes. Processor will then generat
 
 For example, if you drop in two png files 32x32 and 1024x1024 pixels big, they'll be used as sources like so:
 
-| Size | Dropped file | Size source |
-| ---- | ------------ | ----------- |
-| 1024 | 1024.png     | 1024.png    |
-| 512  | x            | 1024.png    |
-| 256  | x            | 1024.png    |
-| 128  | x            | 1024.png    |
-| 64   | x            | 1024.png    |
-| 32   | 32.png       | 32.png      |
-| 16   | x            | 32.png      |
+| Size | Dropped files | Size source |
+| ---- | ------------- | ----------- |
+| 1024 | 1024.png      | 1024.png    |
+| 512  | x             | 1024.png    |
+| 256  | x             | 1024.png    |
+| 128  | x             | 1024.png    |
+| 64   | x             | 1024.png    |
+| 32   | 32.png        | 32.png      |
+| 16   | x             | 32.png      |
 
 #### PNG
 
