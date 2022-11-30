@@ -126,7 +126,7 @@ export default async ({options, inputs, input}: Payload, {stage, progress, outpu
 	}
 
 	// Sort by size, ascending
-	inputImages.sort((a, b) => (a.size > b.size ? -1 : a.size < b.size ? 1 : 0));
+	inputImages.sort((a, b) => (a.size > b.size ? 1 : a.size < b.size ? -1 : 0));
 
 	progress.completed += 1;
 
